@@ -1,0 +1,17 @@
+{
+  "name": "syscon",
+  "version": "0.0.1",
+  "authors": [
+    "Juan Manuel Oviedo Carrasco <jumaov@hotmail.com>"
+  ],
+  "description": "Paquetes del frontend para el proyecto syscon",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "homepage": "syscon.app",
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "bootstrap-material-design": "~0.3.0"
+  }
+}
