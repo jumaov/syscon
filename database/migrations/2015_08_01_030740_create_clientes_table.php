@@ -15,6 +15,7 @@ class CreateClientesTable extends Migration {
 		Schema::create('clientes', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->integer('user_id')->unsigned();
 			$table->string('codigo',10)->unique();
 			$table->string('rif',20)->unique();
 			$table->string('nombre');
@@ -24,6 +25,11 @@ class CreateClientesTable extends Migration {
 			$table->string('email')->unique()->nullable();
 			$table->string('notas',1000)->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')
+            ->references('id')->on('users')
+            ->onUpdate('CASCADE')
+            ->onDelete('NO ACTION');
 		});
 	}
 
@@ -32,9 +38,16 @@ class CreateClientesTable extends Migration {
 	 *
 	 * @return void
 	 */
-	public function down()
+	/**public function down()
 	{
 		Schema::drop('clientes');
 	}
+	*/
+	public function down()
+{
+    DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+    Schema::dropIfExists('clientes');
+    DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+}
 
 }
