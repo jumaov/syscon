@@ -15,7 +15,6 @@ class CreateClientesTable extends Migration {
 		Schema::create('clientes', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('user_id')->unsigned();
 			$table->string('codigo',10)->unique();
 			$table->string('rif',20)->unique();
 			$table->string('nombre');
@@ -26,10 +25,7 @@ class CreateClientesTable extends Migration {
 			$table->string('notas',1000)->nullable();
             $table->timestamps();
 
-            $table->foreign('user_id')
-            ->references('id')->on('users')
-            ->onUpdate('CASCADE')
-            ->onDelete('NO ACTION');
+          
 		});
 	}
 

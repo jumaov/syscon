@@ -15,9 +15,6 @@ class CreateMovimientosTable extends Migration {
 		Schema::create('movimientos', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('user_id')->unsigned();
-			$table->integer('cliente_id')->unsigned();
-			$table->integer('proveedor_id')->unsigned();
             $table->enum('tipo', ['Compra', 'Venta']);
             $table->date('fecha');
             $table->string('nfactura',20);
@@ -27,12 +24,10 @@ class CreateMovimientosTable extends Migration {
             $table->decimal('iva', 12, 2);
             $table->decimal('exento', 12, 2);
             $table->decimal('total', 12, 2);
+            $table->integer('cliente_id')->unsigned();
+			$table->integer('proveedor_id')->unsigned();
+            $table->integer('user_id')->unsigned();
 			$table->timestamps();
-
-			$table->foreign('user_id')
-			->references('id')->on('users')
-			->onUpdate('CASCADE')
-            ->onDelete('NO ACTION');
 
 			$table->foreign('cliente_id')
 			->references('id')->on('clientes')
@@ -41,6 +36,11 @@ class CreateMovimientosTable extends Migration {
 
             $table->foreign('proveedor_id')
 			->references('id')->on('proveedores')
+			->onUpdate('CASCADE')
+            ->onDelete('NO ACTION');
+
+            $table->foreign('user_id')
+			->references('id')->on('users')
 			->onUpdate('CASCADE')
             ->onDelete('NO ACTION');
 

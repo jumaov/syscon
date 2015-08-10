@@ -15,7 +15,6 @@ class CreateProveedoresTable extends Migration {
 		Schema::create('proveedores', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('user_id')->unsigned();
 			$table->string('codigo',10)->unique();
 			$table->string('rif',20)->unique();
 			$table->string('nombre');
@@ -24,6 +23,7 @@ class CreateProveedoresTable extends Migration {
 			$table->string('telefono',100);
 			$table->string('email')->unique()->nullable();
 			$table->string('notas',1000)->nullable();
+			$table->integer('user_id')->unsigned();
 			$table->timestamps();
 
 			$table->foreign('user_id')
