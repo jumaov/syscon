@@ -20,4 +20,7 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-resource('clientes', 'ClienteController');
+//Cambie las rutas de autenticacion.
+
+
+Route::resource('clientes', 'ClienteController');

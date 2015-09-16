@@ -8,6 +8,6 @@ class Proveedor extends Model {
 
 	protected $fillable = [
           'codigo', 'rif', 'nombre', 'rol', 'direccion', 'telefono', 'email', 'notas'
-	]
+	];
 
-}
+} #Proveedor

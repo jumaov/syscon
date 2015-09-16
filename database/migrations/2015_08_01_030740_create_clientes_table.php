@@ -19,14 +19,18 @@ class CreateClientesTable extends Migration {
 			$table->string('rif',20)->unique();
 			$table->string('nombre');
 			$table->enum('rol', ['Nacional', 'Internacional']);
-			$table->string('direccion');
-			$table->string('telefono',100);
-			$table->string('email')->unique()->nullable();
+			$table->string('direccion', 150);
+			$table->string('telefono', 50);
+			$table->string('email')->nullable();
 			$table->string('notas',1000)->nullable();
+			$table->integer('user_id')->unsigned();
             $table->timestamps();
 
-          
-		});
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onUpdate('CASCADE')
+                ->onDelete('CASCADE');
+   		});
 	}
 
 	/**

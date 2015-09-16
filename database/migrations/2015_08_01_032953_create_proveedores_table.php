@@ -21,7 +21,7 @@ class CreateProveedoresTable extends Migration {
 			$table->enum('rol', ['Nacional', 'Internacional']);
 			$table->string('direccion');
 			$table->string('telefono',100);
-			$table->string('email')->unique()->nullable();
+			$table->string('email')->nullable();
 			$table->string('notas',1000)->nullable();
 			$table->integer('user_id')->unsigned();
 			$table->timestamps();
@@ -29,7 +29,7 @@ class CreateProveedoresTable extends Migration {
 			$table->foreign('user_id')
             ->references('id')->on('users')
             ->onUpdate('CASCADE')
-            ->onDelete('NO ACTION');
+            ->onDelete('CASCADE');
 		});
 	}
 

@@ -1,10 +1,13 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests;
+use App\Http\Requests\CreateClienteRequest;
 use App\Http\Controllers\Controller;
-
 use App\Cliente;
+use App\User;
 use Illuminate\Http\Request;
+use Session;
+use Redirect;
+use Auth;
 
 class ClienteController extends Controller {
 
@@ -15,7 +18,7 @@ class ClienteController extends Controller {
 	 */
 	public function index()
 	{
-		$clientes = Cliente::orderby('nombre', 'asc')->paginate();
+		$clientes = Cliente::orderby('nombre', 'asc')->paginate(5);
 
 		return view('clientes.index', compact('clientes'));
 	}
@@ -36,11 +39,14 @@ class ClienteController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request)
+	public function store(CreateClienteRequest $request)
 	{
-		$cliente = cliente::create($request->all());
-
-		return "El Cliente $cliente->nombre se ha creado en la base de datos";
+	    #$cliente = Cliente::create($request->all());
+	    $cliente = new Cliente($request->all()); 
+	    $cliente->user_id = Auth::user()->id;
+	    $cliente->save();
+	    Session::flash('message','Cliente Creado Correctamente');
+	    return Redirect::to('clientes');
 	}
 
 	/**
@@ -62,7 +68,8 @@ class ClienteController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$cliente = cliente::find($id);
+		return view('clientes.edit', ['cliente' =>$cliente]);
 	}
 
 	/**
@@ -71,9 +78,13 @@ class ClienteController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id,Request $request)
 	{
-		//
+		$cliente = cliente::find($id);
+		$cliente->fill($request->all());
+		$cliente->save();
+        Session::flash('message','Cliente Actualizado Correctamente');
+		return Redirect::to('/clientes');
 	}
 
 	/**
@@ -84,7 +95,9 @@ class ClienteController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
-	}
+		Cliente::destroy($id);
+        Session::flash('message','Cliente Eliminado Correctamente');
+		return Redirect::to('/clientes');
+    }
 
 }
