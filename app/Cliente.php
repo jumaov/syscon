@@ -13,5 +13,12 @@ class Cliente extends Model {
 		return $this->belongsTo('App\User');
 	}
 
+	public function scopeName($query, $name)
+	{
+        if (trim($name) != "")
+		$query->where('nombre', "LIKE", "%$name%");
+
+    }
+
 
     } #Cliente
