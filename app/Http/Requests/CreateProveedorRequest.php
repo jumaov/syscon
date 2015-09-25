@@ -22,8 +22,8 @@ class CreateProveedorRequest extends Request {
 	public function rules()
 	{
 		return [
-		     'codigo' => 'required|min:6|unique:clientes,codigo',
-		     'rif' => 'required|min:12|unique:clientes,rif',
+		     'codigo' => 'required|min:6|unique:proveedores,codigo',
+		     'rif' => 'required|min:12|unique:proveedores,rif',
 		     'nombre' => 'required|min:3|',
 		     'rol' => 'required',
 			 'direccion' => 'required',

@@ -23,13 +23,15 @@ class CreateProveedoresTable extends Migration {
 			$table->string('telefono',100);
 			$table->string('email')->nullable();
 			$table->string('notas',1000)->nullable();
-			$table->integer('user_id')->unsigned();
+			$table->integer('user_id')->unsigned();			
 			$table->timestamps();
+
 
 			$table->foreign('user_id')
             ->references('id')->on('users')
             ->onUpdate('CASCADE')
             ->onDelete('CASCADE');
+
 		});
 	}
 

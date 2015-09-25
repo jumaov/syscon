@@ -20,4 +20,6 @@ class Proveedor extends Model {
 
     }
 
+
+
 } #Proveedor
