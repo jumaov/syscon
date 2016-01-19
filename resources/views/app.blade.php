@@ -36,7 +36,12 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="{!! url('/') !!}">Inicio</a></li>
+					<li><a href="{!! url('home') !!}">Inicio</a></li>
+					<li><a href="{!! url('clientes') !!}">Clientes</a></li>
+					<li><a href="{!! url('ventas') !!}">Ventas</a></li>
+					<li><a href="{!! url('proveedores') !!}">Proveedores</a></li>
+					<li><a href="{!! url('compras') !!}">Compras</a></li>
+					<li><a href="{!! url('home') !!}">Reportes</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
